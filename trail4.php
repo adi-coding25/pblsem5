@@ -1,0 +1,57 @@
+<?php
+
+echo "<!DOCTYPE html>\n";
+echo "<html>\n";
+echo "<head>\n";
+echo "<meta charset=\"utf-8\">\n";
+echo "<title>Display Webcam Stream</title>\n";
+echo " \n";
+echo "<style>\n";
+echo "#container {\n";
+echo "	margin: 0px auto;\n";
+echo "	width: 500px;\n";
+echo "	height: 375px;\n";
+echo "	border: 10px #333 solid;\n";
+echo "}\n";
+echo "#videoElement {\n";
+echo "	width: 500px;\n";
+echo "	height: 375px;\n";
+echo "	background-color: #666;\n";
+echo "}\n";
+echo "</style>\n";
+echo "</head>\n";
+echo " \n";
+echo "<body>\n";
+echo "<div id=\"container\">\n";
+echo "	<video autoplay=\"true\" id=\"videoElement\">\n";
+echo "	\n";
+echo "	</video>\n";
+echo "</div>\n";
+echo "<script>\n";
+echo "var video = document.querySelector(\"#videoElement\");\n";
+echo "\n";
+echo "if (navigator.mediaDevices.getUserMedia) {\n";
+echo "  navigator.mediaDevices.getUserMedia({ video: true })\n";
+echo "    .then(function (stream) {\n";
+echo "      video.srcObject = stream;\n";
+echo "    })\n";
+echo "    .catch(function (err0r) {\n";
+echo "      console.log(\"Something went wrong!\");\n";
+echo "    });\n";
+echo "}\n";
+echo "function stop(e) {\n";
+echo "  var stream = video.srcObject;\n";
+echo "  var tracks = stream.getTracks();\n";
+echo "\n";
+echo "  for (var i = 0; i < tracks.length; i++) {\n";
+echo "    var track = tracks[i];\n";
+echo "    track.stop();\n";
+echo "  }\n";
+echo "\n";
+echo "  video.srcObject = null;\n";
+echo "}\n";
+echo "</script>\n";
+echo "</body>\n";
+echo "</html>";
+
+?>
